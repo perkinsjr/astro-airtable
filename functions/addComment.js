@@ -1,12 +1,19 @@
 exports.handler = async event => {
+  console.log(event)
   const { email, name, comment, page } = JSON.parse(event.body);
-  console.log(req.body);
+  console.log(event.body);
   if (!email || !name || !comment || !page) {
-    return res.status(400).json({ error: 'Missing field try again!' });
+    return {
+      statusCode: 400,
+      body: 'Error missing data',
+    };
   }
 
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'method Not allowed' });
+  if (event.method !== 'POST') {
+    return {
+      statusCode: 405,
+      body: 'Method Not Allowed',
+    };
   }
   const request = await fetch(
     'https://api.airtable.com/v0/appc800TSWWSyZ5hy/comments',
@@ -20,8 +27,13 @@ exports.handler = async event => {
     }
   );
   if (request.ok) {
-    return res.status(200).json({ data: 'ok' });
+    return {
+      statusCode: 200,
+      body: 'ok',
+    };
   }
-  console.log(request);
-  return res.status(400).json({ error: 'error' });
+  return {
+    statusCode: 400,
+    body: 'Error Submitting',
+  };
 };
