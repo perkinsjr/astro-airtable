@@ -1,0 +1,36 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import BlogHeader from '../components/BlogHeader.astro';
+import BlogPost from '../components/BlogPost.astro';
+
+const { content } = Astro.props;
+const { pathname } = Astro.canonicalURL;
+const { title, description, publishDate, author, heroImage, permalink, alt } = content;
+const commentsReq = await fetch(
+	`https://api.airtable.com/v0/appc800TSWWSyZ5hy/comments?fields%5B%5D=name&fields%5B%5D=comment&filterByFormula=%7Bpage%7D%3D%22${encodeURI(pathname)}%22&maxRecords=100`,
+	{
+		headers: {
+			Authorization: `Bearer ${import.meta.env.AIRTABLE_KEY}`
+		}
+	}
+);
+const comments = await commentsReq.json();
+---
+
+<html lang={content.lang || 'en' }>
+
+<head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-lucario.css" />
+	<BaseHead {title} {description} {permalink} />
+</head>
+
+<body>
+	<BlogHeader />
+	<div class="wrapper">
+		<BlogPost {title} {author} {heroImage} {publishDate} {alt} {comments} {pathname}>
+			<slot />
+		</BlogPost>
+	</div>
+</body>
+
+</html>
