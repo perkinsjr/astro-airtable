@@ -9,12 +9,6 @@ exports.handler = async event => {
     };
   }
 
-  if (event.method !== 'POST') {
-    return {
-      statusCode: 405,
-      body: 'Method Not Allowed',
-    };
-  }
   const request = await fetch(
     'https://api.airtable.com/v0/appc800TSWWSyZ5hy/comments',
     {
