@@ -9,6 +9,6 @@
   targetPort = 3000
   autoLaunch = true
 
-  [[edge_functions]]
-  path = "/addcomment"
-  function = "addcomment"
+ [functions]
+  node_bundler = "esbuild"
+  directory = "functions/"
