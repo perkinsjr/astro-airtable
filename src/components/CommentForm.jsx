@@ -7,8 +7,7 @@ export const CommentForm = ({ page }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    fetch(
-      `api/addComment`,
+    await fetch(`${import.meta.env.NETLIFY_URL}/.netlify/functions/`,
       {
         method: 'POST',
         headers: {

@@ -9,5 +9,5 @@
   targetPort = 3000
   autoLaunch = true
 
-[functions]
+[edge_functions]
   directory = "functions/"
