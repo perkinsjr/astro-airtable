@@ -6,8 +6,7 @@ const CORS_HEADERS = {
     'Origin, X-Requested-With, Content-Type, Accept'
 };
 
-export async function handler(event, context) {
-  console.log(event);
+export async function handler(event) {
   if (event.httpMethod === 'OPTIONS') {
     return {
       statusCode: 200,

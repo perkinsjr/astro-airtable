@@ -24,10 +24,14 @@ export const CommentForm = ({ page }) => {
     )
       .then(res => res.json())
       .then(res => {
-        console.log(res);
+        setComment('');
+        setEmail('');
+        setName('');
+        alert('Success, We got your comment');
       })
       .catch(err => {
         console.log(err);
+        alert("Sorry, your comment couldn't be added");
       });
   };
 
