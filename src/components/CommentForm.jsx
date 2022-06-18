@@ -7,18 +7,21 @@ export const CommentForm = ({ page }) => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    await fetch(`${import.meta.env.SITE}.netlify/functions/addcomment`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name,
-        comment,
-        email,
-        page
-      })
-    })
+    await fetch(
+      `https://dancing-kangaroo-d733b7.netlify.app/.netlify/functions/addcomment`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name,
+          comment,
+          email,
+          page
+        })
+      }
+    )
       .then(res => res.json())
       .then(res => {
         console.log(res);

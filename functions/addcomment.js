@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
@@ -6,7 +6,7 @@ const CORS_HEADERS = {
     'Origin, X-Requested-With, Content-Type, Accept'
 };
 
-exports.handler = async event => {
+export async function handler(event) {
   console.log(event);
   if (event.httpMethod === 'OPTIONS') {
     return {
@@ -44,4 +44,4 @@ exports.handler = async event => {
     statusCode: 400,
     body: 'Error Submitting'
   };
-};
+}
