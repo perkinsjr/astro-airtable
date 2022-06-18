@@ -24,6 +24,7 @@ export const CommentForm = ({ page }) => {
     )
       .then(res => res.json())
       .then(res => {
+        console.log(res);
         setComment('');
         setEmail('');
         setName('');
