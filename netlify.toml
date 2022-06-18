@@ -10,5 +10,5 @@
   autoLaunch = true
 
   [[edge_functions]]
-  path = "/addComment"
-  function = "addComment"
+  path = "/addcomment"
+  function = "addcomment"
