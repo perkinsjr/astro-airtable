@@ -9,5 +9,6 @@
   targetPort = 3000
   autoLaunch = true
 
-[edge_functions]
-  directory = "functions/"
+  [[edge_functions]]
+  path = "/addComment"
+  function = "addComment"

@@ -5,22 +5,20 @@ export const CommentForm = ({ page }) => {
   const [comment, setComment] = React.useState('');
   const [email, setEmail] = React.useState('');
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    await fetch(`${import.meta.env.NETLIFY_URL}/.netlify/functions/`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name,
-          comment,
-          email,
-          page
-        })
-      }
-    )
+    await fetch(`${import.meta.env.NETLIFY_URL}/.netlify/functions/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name,
+        comment,
+        email,
+        page
+      })
+    })
       .then(res => res.json())
       .then(res => {
         console.log(res);
