@@ -9,6 +9,6 @@
   targetPort = 3000
   autoLaunch = true
 
- [functions]
-  node_bundler = "esbuild"
+[functions]
+    node_bundler = "esbuild"
   directory = "functions/"

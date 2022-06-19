@@ -7,8 +7,8 @@ export const CommentForm = ({ page }) => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    await fetch(
-      `https://dancing-kangaroo-d733b7.netlify.app/.netlify/functions/addcomment`,
+    const addCommentReq = await fetch(
+      `${import.meta.env.SITE}.netlify/functions/addcomment`,
       {
         method: 'POST',
         headers: {
@@ -21,59 +21,58 @@ export const CommentForm = ({ page }) => {
           page
         })
       }
-    )
-      .then(res => res.json())
-      .then(res => {
-        console.log(res);
-        setComment('');
-        setEmail('');
-        setName('');
-        alert('Success, We got your comment');
-      })
-      .catch(err => {
-        console.log(err);
-        alert("Sorry, your comment couldn't be added");
-      });
+    );
+    if (!addCommentReq.status === 200) {
+      alert('Sorry there was an error');
+      setComment('');
+      setEmail('');
+      setName('');
+    }
+    alert('submission success');
   };
 
   return (
-    <div className="max-w-lg mx-auto shadow-md mt-4">
-      <form onSubmit={handleSubmit} className="w-full p-4">
-        <div className="mb-2">
-          <input
-            name="name"
-            placeholder="Bruce Wayne"
-            id="name"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            type="text"
-            className="w-full p-2 border border-gray-300 mb-2"
-          />
-          <input
-            name="email"
-            placeholder="bruce.wayne@gmail.com"
-            id="email"
-            type="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            className="w-full p-2 border border-gray-300 mb-2"
-          />
-          <textarea
-            placeholder="Write your comment here"
-            className="w-full h-20 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
-            name="comment"
-            id="comment"
-            value={comment}
-            onChange={e => setComment(e.target.value)}
-          ></textarea>
-        </div>
-        <button
-          type="submit"
-          className="px-3 py-2 text-sm text-blue-100 bg-blue-600 rounded"
-        >
-          Comment
-        </button>
-      </form>
+    <div className="mt-8 border-t-8	">
+      <h3 className="">Leave a comment</h3>
+
+      <div className="max-w-lg mx-auto border rounded-lg mt-4 p-4">
+        <form onSubmit={handleSubmit} className="w-full p-4">
+          <div className="mb-2">
+            <input
+              name="name"
+              placeholder="Bruce Wayne"
+              id="name"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              type="text"
+              className="w-full p-2 border rounded-md border-gray-300 mb-2"
+            />
+            <input
+              name="email"
+              placeholder="bruce.wayne@gmail.com"
+              id="email"
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              className="w-full p-2 border rounded-md border-gray-300 mb-2"
+            />
+            <textarea
+              placeholder="Write your comment here"
+              className="w-full h-20 p-2 border rounded-md focus:outline-none focus:ring-gray-300 focus:ring-1"
+              name="comment"
+              id="comment"
+              value={comment}
+              onChange={e => setComment(e.target.value)}
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            className="px-3 py-2 text-sm text-blue-100 bg-blue-600 rounded"
+          >
+            Comment
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

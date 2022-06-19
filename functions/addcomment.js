@@ -1,18 +1,6 @@
 import fetch from 'node-fetch';
 
-const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers':
-    'Origin, X-Requested-With, Content-Type, Accept'
-};
-
 export async function handler(event) {
-  if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 200,
-      headers: CORS_HEADERS
-    };
-  }
   const { email, name, comment, page } = JSON.parse(event.body);
   console.log(event.body);
   if (!email || !name || !comment || !page) {
