@@ -7,23 +7,18 @@ export const CommentForm = ({ page }) => {
   console.log(import.meta);
   async function handleSubmit(e) {
     e.preventDefault();
-    const addCommentReq = await fetch(
-      `${
-        import.meta.env.SITE || import.meta.NETLIFY_URL
-      }.netlify/functions/addcomment`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name,
-          comment,
-          email,
-          page
-        })
-      }
-    );
+    const addCommentReq = await fetch(`/.netlify/functions/addcomment`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name,
+        comment,
+        email,
+        page
+      })
+    });
     if (!addCommentReq.status === 200) {
       alert('Sorry there was an error');
       setComment('');
