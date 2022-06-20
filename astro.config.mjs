@@ -6,8 +6,8 @@ import tailwind from '@astrojs/tailwind';
 // https://astro.build/config
 export default defineConfig({
   integrations: [preact(), react(), tailwind()],
-  build: {
-    site: 'https://dancing-kangaroo-d733b7.netlify.app/'
+  env: {
+    NETLIFY: process.env.NETLIFY ? process.env.URL : 'http://localhost:8888'
   },
   site: process.env.NETLIFY ? process.env.URL : 'http://localhost:8888'
 });

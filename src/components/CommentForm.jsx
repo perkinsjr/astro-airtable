@@ -4,8 +4,7 @@ export const CommentForm = ({ page }) => {
   const [name, setName] = useState('');
   const [comment, setComment] = useState('');
   const [email, setEmail] = useState('');
-  console.log(import.meta.env);
-  console.log(import.meta.url);
+  console.log(import.meta);
   async function handleSubmit(e) {
     e.preventDefault();
     const addCommentReq = await fetch(
