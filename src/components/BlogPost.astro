@@ -26,8 +26,8 @@ const { title, publishDate, heroImage, alt, comments, pathname } = Astro.props;
 			</header>
 			<main>
 				<slot />
-				<CommentForm page={pathname} client:load />
-				<Comments comments={comments} client:load />
+				<CommentForm page={pathname} client:visible />
+				<Comments comments={comments} />
 			</main>
 		</div>
 	</article>

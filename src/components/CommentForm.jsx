@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export const CommentForm = ({ page }) => {
-  const [name, setName] = React.useState('');
-  const [comment, setComment] = React.useState('');
-  const [email, setEmail] = React.useState('');
+  const [name, setName] = useState('');
+  const [comment, setComment] = useState('');
+  const [email, setEmail] = useState('');
 
-  const handleSubmit = async e => {
+  async function handleSubmit(e) {
     e.preventDefault();
     const addCommentReq = await fetch(
       `${import.meta.env.SITE}.netlify/functions/addcomment`,
@@ -29,7 +29,7 @@ export const CommentForm = ({ page }) => {
       setName('');
     }
     alert('submission success');
-  };
+  }
 
   return (
     <div className="mt-8 border-t-8	">
