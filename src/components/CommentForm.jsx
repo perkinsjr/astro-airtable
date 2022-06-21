@@ -19,7 +19,7 @@ export const CommentForm = ({ page }) => {
         page
       })
     });
-    console.log(addCommentReq);
+    console.log(await addCommentReq);
     alert("check the console and network")
   }
 
