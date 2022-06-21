@@ -10,5 +10,4 @@
   autoLaunch = true
 
 [functions]
-    node_bundler = "esbuild"
   directory = "functions/"
