@@ -19,13 +19,8 @@ export const CommentForm = ({ page }) => {
         page
       })
     });
-    if (!addCommentReq.status === 200) {
-      alert('Sorry there was an error');
-      setComment('');
-      setEmail('');
-      setName('');
-    }
-    alert('submission success');
+    console.log(addCommentReq);
+    alert("check the console and network")
   }
 
   return (
